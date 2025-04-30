@@ -31,8 +31,6 @@ osc_client = SimpleUDPClient("127.0.0.1", 9000) #set to localhost for single nod
 frame_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
 frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
-print(frame_height)
-
 # Calculate the camera matrix
 focal_length = frame_width / (2 * np.tan(np.deg2rad(CAMERA_FOV / 2)))
 center = (frame_width / 2, frame_height / 2)
@@ -138,14 +136,12 @@ while True:
                         2
                     )
                     #Translate CV to UE
-                    UEx = z
-                    UEy = x
-                    UEz = y
+                    UEx = z * 0.1
+                    UEy = x * 0.1
+                    UEz = y * -0.1
 
                     #add yaw offset
                     yaw_offset = math.degrees(math.atan2(UEy, UEx))
-
-                    print(yaw_offset)
 
                     yaw = yaw + yaw_offset * 2
                     
